@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Top personal scores of movies and tv shows across years</title>
+<style>
+	:root {
+		--selection:          #d3869b;
+		--a-background:       #1d2021;
+	}
+
+	a, a:active, a:visited {
+		color: var(--selection);
+		background-color: var(--a-background);
+		text-decoration: none;
+	}
+
+	body {
+		background-color: #282828;
+		color: white;
+		font-size: 16px;
+		font-family: sans-serif;
+	}
+
+	header, footer {
+		text-align: center;
+	}
+
+	table {
+		background-color: #fbf1c7;
+		color: #3c3836;
+		margin: auto;
+		border-collapse: collapse;
+		font-family: monospace;
+	}
+	tr {
+		border: 1px dotted #504945;
+	}
+	td {
+		padding: 5px;
+	}
+	td[rowspan] {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+
+	td[data-title*="Matrix"] {
+		color: #427b58;
+	}
+</style>
+	</head>
+	<body>
+		<header>
+			<h1>Ratings for movies & series organized by release date</h1>
+			<nav>
+				<a href="/">Go back to main page</a>
+			</nav>
+			<p>
+				Each row represents entry in my IMDB ratings file that has highest rating in given year.
+			</p>
+		</header>
+		<table>
