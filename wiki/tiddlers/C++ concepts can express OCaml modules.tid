@@ -1,0 +1,81 @@
+created: 20230331184942087
+modified: 20230402174526385
+tags: concepts c++
+title: C++ concepts can express OCaml modules
+type: text/vnd.tiddlywiki
+
+
+! Idea
+
+Inspired by [['Modules Matter' Most for the Masses|https://www.pathsensitive.com/2023/03/modules-matter-most-for-masses.html]] post. 
+
+Using OCaml modules one can create such interface:
+
+```ocaml
+module type Stack = sig
+  type stack
+
+  val mkEmpty : () -> stack
+  val isEmpty : stack -> bool
+  val push    : int * stack -> stack
+  val pop     : stack -> int * stack
+end
+```
+
+This is [[difficult to express|https://www.pathsensitive.com/2023/03/modules-matter-most-for-masses.html]] using interfaces in languages like C++, Java or Typescript.
+
+! With C++ interfaces
+
+Mutable implementation is easy:
+
+```cpp
+struct Stack 
+{ 
+    virtual void push(int) = 0;
+    virtual int pop() = 0;
+    virtual bool empty() const = 0;
+    virtual ~Stack() = default;
+};
+```
+
+but immutable one (like in OCaml above) is rather difficult:
+
+```cpp
+struct Stack
+{
+    virtual ~Stack() = default;
+    virtual std::shared_ptr<Stack<T>> push() const = 0;
+    virtual std::tuple<T, std::shared_ptr<Stack<T>>> pop() const = 0;
+    virtual bool empty() const = 0;
+};
+```
+
+and (without using templates and CRTP) it's unable to require that `push()` and `pop()` return the same implementation that callee uses.
+
+! With C++ concepts
+
+Immutable implementation allows us to express constructor, fully mapping OCaml one:
+
+```cpp
+template<typename stack>
+concept Stack = requires (stack const s, int v) {
+  { stack::make_empty() } -> std::same_as<stack>;
+  { s.push(v) } -> std::same_as<stack>;
+  { s.pop()   } -> std::same_as<std::tuple<int, stack>>;
+  { s.empty() } -> std::same_as<bool>;
+};
+```
+
+And mutable one (distinguishing which method are mutable and which one immutable)..
+
+```cpp
+template<typename stack>
+concept Stack = requires (stack const s_imm, stack s_mut, int v) {
+  { Stack() } -> std::same_as<stack>;
+  { s_mut.push(v) } -> std::same_as<void>;
+  { s_mut.pop()   } -> std::same_as<int>;
+  { s_imm.empty() } -> std::same_as<bool>;
+};
+```
+
+Interesting difference with languages like Java is that we can ensure presence of argumentless constructor.
