@@ -6,6 +6,7 @@ WHERE "Title Type" IN ('movie', 'tvSeries', 'tvMiniSeries', 'tvMovie')
 AND CAST("Your Rating" AS INT) = (
 	SELECT MAX(CAST("Your Rating" AS INT))
 	FROM ratings as r2
-	WHERE SUBSTR(r1."Release Date", 0, 5) == SUBSTR(r2."Release Date", 0, 5)
+	WHERE "Title Type" IN ('movie', 'tvSeries', 'tvMiniSeries', 'tvMovie')
+	AND SUBSTR(r1."Release Date", 0, 5) == SUBSTR(r2."Release Date", 0, 5)
 )
 ORDER BY "Release Date";
