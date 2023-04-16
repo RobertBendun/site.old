@@ -1,0 +1,76 @@
+[musique]
+name = "Musique"
+active = true
+started_at = 2022-03-05
+url = "https://musique.students.wmi.amu.edu.pl/"
+description = """
+Programming language designed for algorytmic music composition.
+"""
+
+[history]
+name = "History"
+active = true
+started_at = 2022-09-12
+url = "https://github.com/RobertBendun/history"
+description = """
+Repository that agregates programmings history in machine readable form.
+Mostly used as a reason for author to look at developement of programming languages.
+"""
+
+[imdb]
+name = "IMDb personal ratings data exploration"
+active = true
+started_at = 2021-07-06
+url = "https://github.com/RobertBendun/imdb"
+description = """
+Create stats and graphics about your ratings in IMDb.
+"""
+
+[site]
+name = "Personal website"
+active = true
+started_at = 2020-06-19
+url = "https://bendun.cc"
+description = """
+Personal website, probably you are reading it now
+"""
+
+[stacky]
+name = "Stacky"
+active = false
+started_at = 2021-08-14
+url = "https://github.com/RobertBendun/stacky/"
+description = """
+Concatenative, compiled programming language inspired by <a href="https://gitlab.com/tsoding/porth">Porth</a>
+
+Example code that prints current date and time: <pre><code>"io"   import
+"time" import
+
+"Date is " puts
+now  # returns seconds in Unix time
+date # returns year, month, day, hours, minutes
+     putu "-" puts
+  2 aputu "-" puts
+  2 aputu " " puts
+  2 aputu ":" puts
+  2 aputu nl
+</code></pre>
+"""
+
+[nlpdmenu]
+name = "NLP dmenu"
+active = false
+started_at = 2022-01-25
+url = "https://github.com/RobertBendun/nlp-menu/"
+description = """
+<a href="https://tools.suckless.org/dmenu/">dmenu</a> (written in C) mixed with C++, Python and LISP to create something that reseambles personal asistant with natural language prompt.
+"""
+
+[msg]
+name = "MSG - Mangpage(like) static Site Generator"
+started_at = 2022-11-09
+url = "https://github.com/RobertBendun/msg/"
+description = """
+Site generator from TROFF-like files to manpage-like sites.
+As of <time datetime="2023-04-16">2023-04-16</time> used to create main page on <a href="https://bendun.cc">my personal website</a>.
+"""
