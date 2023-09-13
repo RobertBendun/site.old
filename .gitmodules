@@ -1,0 +1,3 @@
+[submodule "all-conlang"]
+	path = all-conlang
+	url = https://github.com/RobertBendun/all-conlang.git
